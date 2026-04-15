@@ -1,8 +1,5 @@
 <?php
-/**
- * Auth guard — include at top of all protected admin pages.
- * Redirects to login if session is not valid.
- */
+// Simple auth check — if no admin session exists, kick them to the login page
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }

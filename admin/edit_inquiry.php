@@ -1,8 +1,4 @@
 <?php
-/**
- * admin/edit_inquiry.php
- * View and edit full inquiry details + update status.
- */
 require_once __DIR__ . '/../includes/auth_guard.php';
 
 $id = (int)($_GET['id'] ?? 0);
@@ -12,14 +8,12 @@ if ($id <= 0) {
     exit;
 }
 
-$error    = '';
-$success  = '';
-$inquiry  = null;
+$error   = '';
+$inquiry = null;
 
 try {
     $pdo = require __DIR__ . '/../config/db.php';
 
-    // Fetch inquiry
     $stmt = $pdo->prepare(
         'SELECT id, full_name, email, mobile, city, service, message, status, created_at
          FROM inquiries WHERE id = :id LIMIT 1'
@@ -40,7 +34,6 @@ try {
     exit;
 }
 
-/* ── Handle POST (edit form) ──────────────────────────────── */
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $full_name = trim($_POST['full_name'] ?? '');
@@ -51,6 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $message   = trim($_POST['message']   ?? '');
     $status    = trim($_POST['status']    ?? '');
 
+    // Whitelist valid options to avoid random values getting into the DB
     $allowed_statuses = ['new', 'contacted', 'closed'];
     $allowed_services = [
         'Income Tax Filing', 'GST Registration & Returns', 'Company Registration',
@@ -58,14 +52,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ];
 
     $errors = [];
-
-    if (mb_strlen($full_name) < 2)                          $errors[] = 'Full name is required.';
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL))         $errors[] = 'Valid email is required.';
-    if (!preg_match('/^[6-9]\d{9}$/', $mobile))             $errors[] = 'Valid 10-digit mobile required.';
-    if ($city === '')                                        $errors[] = 'City is required.';
-    if (!in_array($service, $allowed_services, true))       $errors[] = 'Select a valid service.';
-    if ($message === '')                                     $errors[] = 'Message is required.';
-    if (!in_array($status, $allowed_statuses, true))        $errors[] = 'Select a valid status.';
+    if (mb_strlen($full_name) < 2)                       $errors[] = 'Full name is required.';
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL))      $errors[] = 'Valid email is required.';
+    if (!preg_match('/^[6-9]\d{9}$/', $mobile))          $errors[] = 'Valid 10-digit mobile required.';
+    if ($city === '')                                     $errors[] = 'City is required.';
+    if (!in_array($service, $allowed_services, true))    $errors[] = 'Select a valid service.';
+    if ($message === '')                                  $errors[] = 'Message is required.';
+    if (!in_array($status, $allowed_statuses, true))     $errors[] = 'Select a valid status.';
 
     if (empty($errors)) {
         try {
@@ -91,22 +84,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 ':id'        => $id,
             ]);
 
-            // Refresh inquiry data
-            $stmt->execute([':id' => $id]);
-            $inquiry = $stmt->fetch();
-
             $_SESSION['flash_type']    = 'success';
-            $_SESSION['flash_message'] = 'Inquiry #' . $id . ' has been updated successfully.';
+            $_SESSION['flash_message'] = 'Inquiry #' . $id . ' updated successfully.';
             header('Location: /admin/inquiries.php');
             exit;
 
         } catch (PDOException $e) {
             error_log('[CA-Firm CRM] Edit update error: ' . $e->getMessage());
-            $error = 'Database error. Please try again.';
+            $error = 'Could not save changes. Please try again.';
         }
     } else {
         $error = implode(' ', $errors);
-        // Temporarily patch $inquiry with submitted data so form re-populates
+        // Patch the $inquiry array with what was submitted so the form re-populates
         $inquiry = array_merge($inquiry, compact('full_name','email','mobile','city','service','message','status'));
     }
 }
@@ -199,8 +188,7 @@ require_once __DIR__ . '/includes/admin_header.php';
 
       <div class="form-footer">
         <a href="/admin/delete_inquiry.php?id=<?= $id ?>"
-           class="btn-form btn-form--danger"
-           style="text-decoration:none;">🗑️ Delete Inquiry</a>
+           class="btn-form btn-form--danger" style="text-decoration:none;">🗑️ Delete Inquiry</a>
         <a href="/admin/inquiries.php" class="btn-form btn-form--secondary" style="text-decoration:none;">Cancel</a>
         <button type="submit" class="btn-form btn-form--primary" id="saveBtn">💾 Save Changes</button>
       </div>

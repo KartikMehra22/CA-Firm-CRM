@@ -1,17 +1,14 @@
 <?php
-/**
- * Public site header / navigation.
- * Uses sessions for flash messages.
- */
+// Start session if not already started — needed for flash messages
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+// Grab flash message from session and clear it so it only shows once
 $flash_type    = $_SESSION['flash_type']    ?? null;
 $flash_message = $_SESSION['flash_message'] ?? null;
 unset($_SESSION['flash_type'], $_SESSION['flash_message']);
 
-// Determine active nav link
 $current_page = basename($_SERVER['PHP_SELF']);
 ?>
 <!DOCTYPE html>
@@ -44,13 +41,15 @@ $current_page = basename($_SERVER['PHP_SELF']);
       </div>
     </a>
 
+    <!-- Nav links — toggle class 'open' via JS for mobile -->
     <ul class="navbar__nav" id="navMenu" role="list">
-      <li><a href="/#home"     class="navbar__link <?= $current_page === 'index.php' ? 'active-link' : '' ?>">Home</a></li>
+      <li><a href="/#home"     class="navbar__link">Home</a></li>
       <li><a href="/#services" class="navbar__link">Services</a></li>
       <li><a href="/#about"    class="navbar__link">About Us</a></li>
       <li><a href="/#contact"  class="navbar__link navbar__cta">Get Consultation</a></li>
     </ul>
 
+    <!-- Hamburger button for mobile, toggled via main.js -->
     <button class="navbar__toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navMenu">
       <span></span><span></span><span></span>
     </button>

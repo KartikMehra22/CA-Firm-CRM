@@ -1,13 +1,9 @@
 <?php
-/**
- * admin/login.php
- * Admin authentication — session-based, bcrypt verified.
- */
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Already logged in → go to dashboard
+// Redirect to dashboard if already logged in
 if (!empty($_SESSION['admin_id'])) {
     header('Location: /admin/dashboard.php');
     exit;
@@ -26,6 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         try {
             $pdo = require __DIR__ . '/../config/db.php';
 
+            // Look up the admin by email — only need one row
             $stmt = $pdo->prepare(
                 'SELECT id, name, email, password FROM admins WHERE email = :email LIMIT 1'
             );
@@ -33,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $admin = $stmt->fetch();
 
             if ($admin && password_verify($password, $admin['password'])) {
-                // Regenerate session ID to prevent session fixation
+                // Regenerate session ID on login to prevent session fixation attacks
                 session_regenerate_id(true);
 
                 $_SESSION['admin_id']    = $admin['id'];
@@ -47,8 +44,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
 
         } catch (PDOException $e) {
-            error_log('[CA-Firm CRM] Login DB Error: ' . $e->getMessage());
-            $error = 'A server error occurred. Please try again.';
+            error_log('[CA-Firm CRM] Login error: ' . $e->getMessage());
+            $error = 'Something went wrong. Please try again.';
         }
     }
 }

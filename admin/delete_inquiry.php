@@ -1,8 +1,4 @@
 <?php
-/**
- * admin/delete_inquiry.php
- * Shows a confirmation page, then deletes the inquiry on POST.
- */
 require_once __DIR__ . '/../includes/auth_guard.php';
 
 $id = (int)($_GET['id'] ?? 0);
@@ -15,7 +11,7 @@ if ($id <= 0) {
 try {
     $pdo = require __DIR__ . '/../config/db.php';
 
-    // Fetch for display in confirmation
+    // Fetch just enough info to show in the confirmation message
     $stmt = $pdo->prepare(
         'SELECT id, full_name, email, service, created_at FROM inquiries WHERE id = :id LIMIT 1'
     );
@@ -35,21 +31,21 @@ try {
     exit;
 }
 
-/* ── Handle confirmed delete ──────────────────────────────── */
+// Only delete when the form is actually submitted — not just by visiting the URL
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_delete'])) {
     try {
         $del = $pdo->prepare('DELETE FROM inquiries WHERE id = :id');
         $del->execute([':id' => $id]);
 
         $_SESSION['flash_type']    = 'success';
-        $_SESSION['flash_message'] = 'Inquiry #' . $id . ' (' . $inquiry['full_name'] . ') has been permanently deleted.';
+        $_SESSION['flash_message'] = 'Inquiry #' . $id . ' (' . $inquiry['full_name'] . ') deleted.';
         header('Location: /admin/inquiries.php');
         exit;
 
     } catch (PDOException $e) {
         error_log('[CA-Firm CRM] Delete error: ' . $e->getMessage());
         $_SESSION['flash_type']    = 'error';
-        $_SESSION['flash_message'] = 'Could not delete the inquiry. Please try again.';
+        $_SESSION['flash_message'] = 'Could not delete. Please try again.';
         header('Location: /admin/inquiries.php');
         exit;
     }
@@ -69,13 +65,11 @@ require_once __DIR__ . '/includes/admin_header.php';
       <strong><?= htmlspecialchars($inquiry['full_name']) ?></strong>
       (<em><?= htmlspecialchars($inquiry['email']) ?></em>)<br>
       regarding <strong><?= htmlspecialchars($inquiry['service']) ?></strong>.<br><br>
-      <span style="color:#c62828;font-weight:600;">This action cannot be undone.</span>
+      <span style="color:#c62828;font-weight:600;">This cannot be undone.</span>
     </p>
 
     <div class="confirm-actions">
-      <a href="/admin/inquiries.php" class="btn-form btn-form--secondary" style="text-decoration:none;">
-        Cancel
-      </a>
+      <a href="/admin/inquiries.php" class="btn-form btn-form--secondary" style="text-decoration:none;">Cancel</a>
       <form method="POST" action="/admin/delete_inquiry.php?id=<?= $id ?>" style="display:inline;">
         <button type="submit" name="confirm_delete" value="1" class="btn-form btn-form--danger" id="confirmDeleteBtn">
           🗑️ Yes, Delete It

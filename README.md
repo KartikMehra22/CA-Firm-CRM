@@ -1,141 +1,114 @@
-# Sharma & Associates — CA Firm CRM
+# CA Firm Landing Page + Inquiry Management System
 
-> **PHP Developer Internship Assignment · Round 1**
-> A backend-focused web application for a CA / Tax Consultancy company.
+A PHP web app built for a CA / Tax consultancy firm. Has a public-facing landing page where clients can submit inquiries, and an admin panel to manage those inquiries.
 
----
-
-## Tech Stack
-
-| Layer      | Technology                              |
-|------------|-----------------------------------------|
-| Language   | Core PHP 8.x (no framework)             |
-| Database   | MySQL 8 via PDO, prepared statements    |
-| Frontend   | Vanilla HTML5, CSS3, minimal JavaScript |
-| Auth       | Session-based, `password_hash` / `password_verify` (bcrypt) |
+Built as part of a PHP Developer Internship assignment.
 
 ---
 
-## Project Structure
+## Tech Used
+
+- **PHP 8.x** — Core PHP, no framework
+- **MySQL** — Database
+- **PDO** — For all DB queries (prepared statements throughout)
+- **Vanilla CSS + JS** — No libraries, everything written from scratch
+
+---
+
+## What It Does
+
+### Public Side
+- Landing page with info about the firm, services offered, and a contact/inquiry form
+- Form collects: Full Name, Email, Mobile, City, Service, Message
+- Server-side validation on all fields
+- Shows a success/error flash message after submission
+
+### Admin Panel (`/admin/login.php`)
+- Secure login with bcrypt-hashed passwords
+- Session-based auth — all admin routes are protected
+- Dashboard showing total, new, contacted, and closed inquiry counts
+- Inquiry list with search (name / email / mobile) and status filter
+- Pagination (15 per page)
+- Edit any inquiry's details and update its status
+- Delete with a confirmation step so nothing gets deleted by accident
+
+---
+
+## Folder Structure
 
 ```
 CA-Firm-CRM/
-├── ca_firm.sql              ← DB schema + seed admin
+├── ca_firm.sql              ← run this first to set up the DB
 ├── config/
-│   └── db.php               ← PDO connection factory
+│   └── db.php               ← PDO connection, just require() wherever needed
 ├── includes/
-│   ├── header.php           ← Public site header & nav
-│   ├── footer.php           ← Public site footer
-│   └── auth_guard.php       ← Admin session guard
+│   ├── header.php           ← public site nav + flash messages
+│   ├── footer.php
+│   └── auth_guard.php       ← drop this at the top of any admin page
 ├── assets/
 │   ├── css/
-│   │   ├── style.css        ← Public design system (Navy + Gold)
-│   │   └── admin.css        ← Admin panel styles
+│   │   ├── style.css        ← public site styles
+│   │   └── admin.css        ← admin panel styles
 │   └── js/
-│       └── main.js          ← Mobile nav, flash dismiss, validation
-├── index.php                ← Public landing page
-├── submit_inquiry.php       ← Inquiry form POST handler
+│       └── main.js          ← mobile nav toggle, flash dismiss, form validation
+├── index.php                ← public landing page
+├── submit_inquiry.php       ← handles the form POST
 └── admin/
-    ├── login.php            ← Admin login
-    ├── logout.php           ← Session destroy
-    ├── dashboard.php        ← Stats: total / new / contacted / closed
-    ├── inquiries.php        ← List with search, filter, pagination
-    ├── edit_inquiry.php     ← Full CRUD edit + status update
-    ├── delete_inquiry.php   ← Confirm + delete
+    ├── login.php
+    ├── logout.php
+    ├── dashboard.php
+    ├── inquiries.php
+    ├── edit_inquiry.php
+    ├── delete_inquiry.php
     └── includes/
-        ├── admin_header.php ← Sidebar + topbar shell
-        └── admin_footer.php ← Closes layout
+        ├── admin_header.php
+        └── admin_footer.php
 ```
 
 ---
 
-## Setup Instructions
+## Setup
 
-### 1. Clone / Copy the project
-
-```bash
-git clone <repo-url>
-# or extract the ZIP into your htdocs / www / Sites folder
-```
-
-### 2. Import the database
+**1. Import the database**
 
 ```bash
 mysql -u root -p < ca_firm.sql
-# Or open phpMyAdmin → Import → select ca_firm.sql
 ```
 
-### 3. Configure database credentials
-
-Open **`config/db.php`** and set your MySQL user and password:
+**2. Update DB credentials in `config/db.php`**
 
 ```php
 $user = 'root';
-$pass = 'your_password_here';
+$pass = 'your_password';
 ```
 
-### 4. Configure your web server
+**3. Start a local server**
 
-**Apache (XAMPP / MAMP):**  
-Place the project in `htdocs/CA-Firm-CRM/` and ensure `mod_rewrite` is on.
-
-URL paths in this project use absolute `/` roots.  
-Recommended: create a virtual host pointing to the project root, e.g. `ca-firm.local`.
-
-**PHP Built-in Server (quick test):**
-
+If you have PHP installed:
 ```bash
-cd CA-Firm-CRM
 php -S localhost:8000
 ```
 
-Then visit `http://localhost:8000`
+Or drop the folder into XAMPP's `htdocs` / MAMP's `htdocs` and access it from there.
+
+**4. Open in browser**
+
+- Public site: `http://localhost:8000`
+- Admin login: `http://localhost:8000/admin/login.php`
 
 ---
 
-## Admin Credentials
+## Admin Login
 
-| Field    | Value              |
-|----------|--------------------|
-| URL      | `/admin/login.php` |
-| Email    | `admin@cafirm.com` |
-| Password | `Admin@123`        |
-
----
-
-## Features
-
-### Public Site
-- ✅ Responsive landing page (Navy + Gold theme)
-- ✅ Hero section with stats
-- ✅ 6 service cards
-- ✅ Why-choose-us section
-- ✅ Inquiry form with client + server-side validation
-- ✅ Flash success/error message on submission
-
-### Admin Panel
-- ✅ Secure login (bcrypt, session regeneration)
-- ✅ Protected routes via auth guard
-- ✅ Dashboard with 4 real-time stat cards
-- ✅ Inquiry list — search by name/email/mobile
-- ✅ Filter by status (new / contacted / closed)
-- ✅ Pagination (15 per page)
-- ✅ Edit all inquiry fields + status
-- ✅ Delete with confirmation (POST-confirm pattern)
-- ✅ Flash messages throughout
-- ✅ Fully mobile-responsive sidebar
+```
+Email:    admin@cafirm.com
+Password: Admin@123
+```
 
 ---
 
-## Security Notes
+## Notes
 
-- All DB queries use **PDO prepared statements** — no raw SQL interpolation
-- Passwords hashed with **`password_hash(PASSWORD_BCRYPT)`**
-- Session ID regenerated on login to prevent session fixation
-- All user output escaped with `htmlspecialchars`
-- `PDO::ATTR_EMULATE_PREPARES = false` enforced
-- Users never see raw PHP errors or DB messages
-
----
-
-*Submitted by: [Your Name] · PHP Developer Internship · April 2026*
+- If you're on macOS and get a socket error with MySQL, change `localhost` to `127.0.0.1` in `config/db.php` — that forces a TCP connection instead of a Unix socket.
+- The bcrypt hash in `ca_firm.sql` was generated with PHP's `password_hash('Admin@123', PASSWORD_BCRYPT)` so it works out of the box with `password_verify()`.
+- Flash messages are stored in the session and cleared after being displayed once.
