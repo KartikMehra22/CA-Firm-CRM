@@ -38,6 +38,6 @@ INSERT INTO admins (name, email, password) VALUES
 (
     'Super Admin',
     'admin@cafirm.com',
-    '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'
+    '$2y$10$eD4ZlLk5.JIErhW.iKQ3bO5Nb.2X5cR0aGLuixCqrQNTyKFmLK.eC'
 )
 ON DUPLICATE KEY UPDATE id = id;

@@ -4,10 +4,10 @@
  * Returns a PDO connection to the ca_firm database.
  */
 
-$host = 'localhost';
+$host = '127.0.0.1'; // Use IP instead of 'localhost' to force TCP (avoids macOS socket errors)
 $db   = 'ca_firm';
 $user = 'root';
-$pass = ''; // Default password for local development
+$pass = 'root'; // Update this if you set a different password during MySQL reset
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
