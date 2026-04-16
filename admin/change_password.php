@@ -55,10 +55,10 @@ require_once __DIR__ . '/includes/admin_header.php';
 </div>
 
 <?php if ($error): ?>
-<div class="admin-flash admin-flash--error" role="alert">✕ <?= htmlspecialchars($error) ?></div>
+<div class="admin-flash admin-flash--error" role="alert"><i data-lucide="x-circle"></i> <?= htmlspecialchars($error) ?></div>
 <?php endif; ?>
 <?php if ($success): ?>
-<div class="admin-flash admin-flash--success" role="alert">✓ <?= htmlspecialchars($success) ?></div>
+<div class="admin-flash admin-flash--success" role="alert"><i data-lucide="check-circle"></i> <?= htmlspecialchars($success) ?></div>
 <?php endif; ?>
 
 <div class="card" style="max-width:520px;">
@@ -87,7 +87,7 @@ require_once __DIR__ . '/includes/admin_header.php';
 
       <div class="form-footer">
         <a href="/admin/dashboard.php" class="btn-form btn-form--secondary" style="text-decoration:none;">Cancel</a>
-        <button type="submit" class="btn-form btn-form--primary" id="changePassBtn">🔒 Update Password</button>
+        <button type="submit" class="btn-form btn-form--primary" id="changePassBtn"><i data-lucide="lock"></i> Update Password</button>
       </div>
     </form>
   </div>

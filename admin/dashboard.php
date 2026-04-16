@@ -44,7 +44,7 @@ require_once __DIR__ . '/includes/admin_header.php';
 <div class="stats-grid">
 
   <div class="stat-card stat-card--total" role="region" aria-label="Total inquiries">
-    <div class="stat-card__icon" aria-hidden="true">📋</div>
+    <div class="stat-card__icon" aria-hidden="true"><i data-lucide="clipboard-list"></i></div>
     <div>
       <p class="stat-card__num"><?= (int)$stats['total'] ?></p>
       <p class="stat-card__label">Total Inquiries</p>
@@ -52,7 +52,7 @@ require_once __DIR__ . '/includes/admin_header.php';
   </div>
 
   <div class="stat-card stat-card--new" role="region" aria-label="New inquiries">
-    <div class="stat-card__icon" aria-hidden="true">🆕</div>
+    <div class="stat-card__icon" aria-hidden="true"><i data-lucide="sparkles"></i></div>
     <div>
       <p class="stat-card__num"><?= (int)$stats['new_count'] ?></p>
       <p class="stat-card__label">New</p>
@@ -60,7 +60,7 @@ require_once __DIR__ . '/includes/admin_header.php';
   </div>
 
   <div class="stat-card stat-card--contacted" role="region" aria-label="Contacted inquiries">
-    <div class="stat-card__icon" aria-hidden="true">📞</div>
+    <div class="stat-card__icon" aria-hidden="true"><i data-lucide="phone"></i></div>
     <div>
       <p class="stat-card__num"><?= (int)$stats['contacted_count'] ?></p>
       <p class="stat-card__label">Contacted</p>
@@ -68,7 +68,7 @@ require_once __DIR__ . '/includes/admin_header.php';
   </div>
 
   <div class="stat-card stat-card--closed" role="region" aria-label="Closed inquiries">
-    <div class="stat-card__icon" aria-hidden="true">✅</div>
+    <div class="stat-card__icon" aria-hidden="true"><i data-lucide="check-circle-2"></i></div>
     <div>
       <p class="stat-card__num"><?= (int)$stats['closed_count'] ?></p>
       <p class="stat-card__label">Closed</p>
@@ -80,12 +80,12 @@ require_once __DIR__ . '/includes/admin_header.php';
 <div class="card">
   <div class="card__header">
     <h2 class="card__title">Recent Inquiries</h2>
-    <a href="/admin/inquiries.php" class="filter-btn filter-btn--primary" style="text-decoration:none;">View All →</a>
+    <a href="/admin/inquiries.php" class="filter-btn filter-btn--primary" style="text-decoration:none;">View All <i data-lucide="arrow-right"></i></a>
   </div>
 
   <?php if (empty($recent)): ?>
   <div class="empty-state">
-    <div class="empty-state__icon">📭</div>
+    <div class="empty-state__icon"><i data-lucide="inbox"></i></div>
     <p class="empty-state__title">No inquiries yet</p>
     <p class="empty-state__desc">Once clients submit the contact form, inquiries will appear here.</p>
   </div>
@@ -123,7 +123,9 @@ require_once __DIR__ . '/includes/admin_header.php';
           </td>
           <td>
             <div class="action-btns">
-              <a href="/admin/edit_inquiry.php?id=<?= (int)$row['id'] ?>" class="btn-icon btn-icon--edit" title="Edit" aria-label="Edit inquiry <?= (int)$row['id'] ?>">✏️</a>
+              <a href="/admin/edit_inquiry.php?id=<?= (int)$row['id'] ?>" class="btn-icon btn-icon--edit" title="Edit" aria-label="Edit inquiry <?= (int)$row['id'] ?>">
+                <i data-lucide="edit"></i>
+              </a>
             </div>
           </td>
         </tr>

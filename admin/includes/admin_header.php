@@ -23,6 +23,7 @@ $initials    = strtoupper(substr($admin_name, 0, 1));
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><?= htmlspecialchars($page_title ?? 'Admin Panel') ?> — Sharma &amp; Associates CRM</title>
   <link rel="stylesheet" href="/assets/css/admin.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231a2e5a'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='16' font-weight='700' fill='%23c9a84c' font-family='Georgia,serif'%3ESA%3C/text%3E%3C/svg%3E">
 </head>
 <body>
@@ -50,14 +51,14 @@ $initials    = strtoupper(substr($admin_name, 0, 1));
         <li class="sidebar__item">
           <a href="/admin/dashboard.php"
              class="sidebar__link <?= ($active_nav ?? '') === 'dashboard' ? 'active' : '' ?>">
-            <span class="sidebar__icon">📊</span>
+            <span class="sidebar__icon"><i data-lucide="bar-chart-3"></i></span>
             Dashboard
           </a>
         </li>
         <li class="sidebar__item">
           <a href="/admin/inquiries.php"
              class="sidebar__link <?= ($active_nav ?? '') === 'inquiries' ? 'active' : '' ?>">
-            <span class="sidebar__icon">📋</span>
+            <span class="sidebar__icon"><i data-lucide="clipboard-list"></i></span>
             All Inquiries
           </a>
         </li>
@@ -67,7 +68,7 @@ $initials    = strtoupper(substr($admin_name, 0, 1));
       <ul>
         <li class="sidebar__item">
           <a href="/admin/change_password.php" class="sidebar__link">
-            <span class="sidebar__icon">🔒</span> Change Password
+            <span class="sidebar__icon"><i data-lucide="lock"></i></span> Change Password
           </a>
         </li>
       </ul>
@@ -75,7 +76,7 @@ $initials    = strtoupper(substr($admin_name, 0, 1));
       <ul>
         <li class="sidebar__item">
           <a href="/" target="_blank" class="sidebar__link">
-            <span class="sidebar__icon">🌐</span> View Public Site
+            <span class="sidebar__icon"><i data-lucide="globe"></i></span> View Public Site
           </a>
         </li>
       </ul>
@@ -87,7 +88,7 @@ $initials    = strtoupper(substr($admin_name, 0, 1));
         <p class="sidebar__admin-role"><?= htmlspecialchars($admin_email) ?></p>
       </div>
       <a href="/admin/logout.php" class="sidebar__logout">
-        🚪 Sign Out
+        <i data-lucide="log-out"></i> Sign Out
       </a>
     </div>
 
@@ -119,7 +120,7 @@ $initials    = strtoupper(substr($admin_name, 0, 1));
 
       <?php if ($admin_flash_message): ?>
       <div class="admin-flash admin-flash--<?= htmlspecialchars($admin_flash_type) ?>" role="alert">
-        <?= $admin_flash_type === 'success' ? '✓' : '✕' ?>
+        <i data-lucide="<?= $admin_flash_type === 'success' ? 'check-circle' : 'x-circle' ?>"></i>
         <?= htmlspecialchars($admin_flash_message) ?>
       </div>
       <?php endif; ?>

@@ -116,11 +116,11 @@ require_once __DIR__ . '/includes/admin_header.php';
       </span>
     </p>
   </div>
-  <a href="/admin/inquiries.php" class="filter-btn filter-btn--ghost" style="text-decoration:none;">← Back to List</a>
+  <a href="/admin/inquiries.php" class="filter-btn filter-btn--ghost" style="text-decoration:none;"><i data-lucide="arrow-left"></i> Back to List</a>
 </div>
 
 <?php if ($error): ?>
-<div class="admin-flash admin-flash--error" role="alert">✕ <?= htmlspecialchars($error) ?></div>
+<div class="admin-flash admin-flash--error" role="alert"><i data-lucide="x-circle"></i> <?= htmlspecialchars($error) ?></div>
 <?php endif; ?>
 
 <div class="card">
@@ -173,9 +173,9 @@ require_once __DIR__ . '/includes/admin_header.php';
         <div class="form-group">
           <label class="form-label" for="edit_status">Status <span style="color:#ef5350">*</span></label>
           <select id="edit_status" name="status" class="form-control" required>
-            <option value="new"       <?= $inquiry['status'] === 'new'       ? 'selected' : '' ?>>🆕 New</option>
-            <option value="contacted" <?= $inquiry['status'] === 'contacted' ? 'selected' : '' ?>>📞 Contacted</option>
-            <option value="closed"    <?= $inquiry['status'] === 'closed'    ? 'selected' : '' ?>>✅ Closed</option>
+            <option value="new"       <?= $inquiry['status'] === 'new'       ? 'selected' : '' ?>>New</option>
+            <option value="contacted" <?= $inquiry['status'] === 'contacted' ? 'selected' : '' ?>>Contacted</option>
+            <option value="closed"    <?= $inquiry['status'] === 'closed'    ? 'selected' : '' ?>>Closed</option>
           </select>
         </div>
 
@@ -188,9 +188,9 @@ require_once __DIR__ . '/includes/admin_header.php';
 
       <div class="form-footer">
         <a href="/admin/delete_inquiry.php?id=<?= $id ?>"
-           class="btn-form btn-form--danger" style="text-decoration:none;">🗑️ Delete Inquiry</a>
+           class="btn-form btn-form--danger" style="text-decoration:none;"><i data-lucide="trash-2"></i> Delete Inquiry</a>
         <a href="/admin/inquiries.php" class="btn-form btn-form--secondary" style="text-decoration:none;">Cancel</a>
-        <button type="submit" class="btn-form btn-form--primary" id="saveBtn">💾 Save Changes</button>
+        <button type="submit" class="btn-form btn-form--primary" id="saveBtn"><i data-lucide="save"></i> Save Changes</button>
       </div>
 
     </form>

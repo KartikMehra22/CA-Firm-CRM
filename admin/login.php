@@ -57,6 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Login — Sharma &amp; Associates CRM</title>
   <link rel="stylesheet" href="/assets/css/admin.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231a2e5a'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='16' font-weight='700' fill='%23c9a84c' font-family='Georgia,serif'%3ESA%3C/text%3E%3C/svg%3E">
 </head>
 <body>
@@ -75,11 +76,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <h1 class="login-title">Sign In</h1>
     <p class="login-sub">Enter your credentials to access the CRM dashboard.</p>
 
-    <?php if ($error !== ''): ?>
-    <div class="login-error" role="alert">
-      <strong>Error:</strong> <?= htmlspecialchars($error) ?>
-    </div>
-    <?php endif; ?>
+    <?php if ($error): ?>
+<div class="admin-flash admin-flash--error" role="alert"><i data-lucide="x-circle"></i> <?= htmlspecialchars($error) ?></div>
+<?php endif; ?>
+<?php if ($success): ?>
+<div class="admin-flash admin-flash--success" role="alert"><i data-lucide="check-circle"></i> <?= htmlspecialchars($success) ?></div>
+<?php endif; ?>
 
     <form class="login-form" method="POST" action="/admin/login.php" novalidate>
 
@@ -112,13 +114,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       </div>
 
       <button type="submit" class="login-btn" id="loginBtn">
-        🔐 Sign In to Dashboard
+        <i data-lucide="lock"></i> Sign In to Dashboard
       </button>
 
     </form>
 
     <p style="margin-top:1.5rem;text-align:center;font-size:.8rem;color:#9aaacb;">
-      <a href="/" style="color:#c9a84c;">← Back to Public Site</a>
+      <a href="/" style="color:#c9a84c;"><i data-lucide="arrow-left"></i> Back to Public Site</a>
     </p>
 
   </div>

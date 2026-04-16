@@ -104,9 +104,9 @@ require_once __DIR__ . '/includes/admin_header.php';
         <!-- Status dropdown auto-submits the form on change -->
         <select name="status" id="statusFilter" class="filter-input" onchange="document.getElementById('filterForm').submit()">
           <option value=""          <?= $status === ''          ? 'selected' : '' ?>>All Status</option>
-          <option value="new"       <?= $status === 'new'       ? 'selected' : '' ?>>🆕 New</option>
-          <option value="contacted" <?= $status === 'contacted' ? 'selected' : '' ?>>📞 Contacted</option>
-          <option value="closed"    <?= $status === 'closed'    ? 'selected' : '' ?>>✅ Closed</option>
+          <option value="new"       <?= $status === 'new'       ? 'selected' : '' ?>>New</option>
+          <option value="contacted" <?= $status === 'contacted' ? 'selected' : '' ?>>Contacted</option>
+          <option value="closed"    <?= $status === 'closed'    ? 'selected' : '' ?>>Closed</option>
         </select>
 
         <button type="submit" class="filter-btn filter-btn--primary" id="searchBtn">Search</button>
@@ -129,14 +129,14 @@ require_once __DIR__ . '/includes/admin_header.php';
          class="filter-btn filter-btn--primary"
          style="text-decoration:none;display:flex;align-items:center;gap:.4rem;"
          title="Download current results as CSV">
-        ⬇️ Export CSV
+        <i data-lucide="download"></i> Export CSV
       </a>
     </div>
   </div>
 
   <?php if (empty($rows)): ?>
   <div class="empty-state">
-    <div class="empty-state__icon">🔍</div>
+    <div class="empty-state__icon"><i data-lucide="search"></i></div>
     <p class="empty-state__title">No matching inquiries</p>
     <p class="empty-state__desc">Try adjusting your search or filter.</p>
   </div>
@@ -175,9 +175,9 @@ require_once __DIR__ . '/includes/admin_header.php';
               <input type="hidden" name="back" value="<?= htmlspecialchars($_SERVER['REQUEST_URI']) ?>">
               <select name="status" class="filter-input" style="padding:.3rem .6rem;font-size:.78rem;cursor:pointer;"
                       onchange="this.form.submit()" title="Change status">
-                <option value="new"       <?= $row['status']==='new'       ? 'selected':'' ?>>🆕 New</option>
-                <option value="contacted" <?= $row['status']==='contacted' ? 'selected':'' ?>>📞 Contacted</option>
-                <option value="closed"    <?= $row['status']==='closed'    ? 'selected':'' ?>>✅ Closed</option>
+                <option value="new"       <?= $row['status']==='new'       ? 'selected':'' ?>>New</option>
+                <option value="contacted" <?= $row['status']==='contacted' ? 'selected':'' ?>>Contacted</option>
+                <option value="closed"    <?= $row['status']==='closed'    ? 'selected':'' ?>>Closed</option>
               </select>
             </form>
           </td>
@@ -188,9 +188,9 @@ require_once __DIR__ . '/includes/admin_header.php';
           <td>
             <div class="action-btns">
               <a href="/admin/edit_inquiry.php?id=<?= (int)$row['id'] ?>"
-                 class="btn-icon btn-icon--edit" title="Edit" aria-label="Edit inquiry <?= (int)$row['id'] ?>">✏️</a>
+                 class="btn-icon btn-icon--edit" title="Edit" aria-label="Edit inquiry <?= (int)$row['id'] ?>"><i data-lucide="pencil"></i></a>
               <a href="/admin/delete_inquiry.php?id=<?= (int)$row['id'] ?>"
-                 class="btn-icon btn-icon--delete" title="Delete" aria-label="Delete inquiry <?= (int)$row['id'] ?>">🗑️</a>
+                 class="btn-icon btn-icon--delete" title="Delete" aria-label="Delete inquiry <?= (int)$row['id'] ?>"><i data-lucide="trash-2"></i></a>
             </div>
           </td>
         </tr>
@@ -202,7 +202,7 @@ require_once __DIR__ . '/includes/admin_header.php';
   <?php if ($total_pages > 1): ?>
   <div style="display:flex;justify-content:center;align-items:center;gap:.5rem;padding:1.25rem 1.5rem;border-top:1px solid var(--grey-200);flex-wrap:wrap;">
     <?php if ($page > 1): ?>
-    <a href="<?= build_qs(['page' => $page - 1]) ?>" class="filter-btn filter-btn--ghost" style="text-decoration:none;">← Prev</a>
+    <a href="<?= build_qs(['page' => $page - 1]) ?>" class="filter-btn filter-btn--ghost" style="text-decoration:none;"><i data-lucide="arrow-left"></i> Prev</a>
     <?php endif; ?>
 
     <?php for ($p = max(1, $page - 2); $p <= min($total_pages, $page + 2); $p++): ?>
@@ -215,7 +215,7 @@ require_once __DIR__ . '/includes/admin_header.php';
     <?php endfor; ?>
 
     <?php if ($page < $total_pages): ?>
-    <a href="<?= build_qs(['page' => $page + 1]) ?>" class="filter-btn filter-btn--ghost" style="text-decoration:none;">Next →</a>
+    <a href="<?= build_qs(['page' => $page + 1]) ?>" class="filter-btn filter-btn--ghost" style="text-decoration:none;">Next <i data-lucide="arrow-right"></i></a>
     <?php endif; ?>
   </div>
   <?php endif; ?>

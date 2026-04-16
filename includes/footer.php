@@ -25,17 +25,17 @@ $year = date('Y');
           <li><a href="/#contact"  class="footer__link">Contact Us</a></li>
         </ul>
       </div>
-      <!-- Contact -->
-      <div>
-        <p class="footer__heading">Contact</p>
-        <div class="footer__contact-item">📞 <span>+91 98765 43210</span></div>
-        <div class="footer__contact-item">✉️ <span>info@sharmaassociates.in</span></div>
-        <div class="footer__contact-item">📍 <span>Connaught Place, New Delhi – 110001</span></div>
+      <div class="footer__section">
+      <h3 class="footer__title">Quick Contact</h3>
+      <div class="footer__contact">
+        <div class="footer__contact-item"><i data-lucide="phone"></i> <span>+91 98765 43210</span></div>
+        <div class="footer__contact-item"><i data-lucide="mail"></i> <span>info@sharmaassociates.in</span></div>
+        <div class="footer__contact-item"><i data-lucide="map-pin"></i> <span>Connaught Place, New Delhi – 110001</span></div>
       </div>
     </div>
-    <div class="footer__bottom">
-      <p>&copy; <?= $year ?> <span>Sharma &amp; Associates</span>. All rights reserved.</p>
-      <p>Designed with ♥ for our clients.</p>
+    <div class="footer__bottom-text">
+      <p>&copy; <?= date('Y') ?> Sharma &amp; Associates. All rights reserved.</p>
+      <p>Designed with <i data-lucide="heart" style="color:#ef4444;fill:#ef4444;width:0.9em;height:0.9em;"></i> for our clients.</p>
     </div>
   </div>
 </footer>

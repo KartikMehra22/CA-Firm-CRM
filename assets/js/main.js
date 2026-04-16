@@ -4,6 +4,11 @@
 
 document.addEventListener('DOMContentLoaded', function () {
 
+  // Initialize Lucide icons
+  if (typeof lucide !== 'undefined') {
+    lucide.createIcons();
+  }
+
   /* ── Mobile Nav Toggle (Public) ──────────────────────────── */
   const toggle = document.getElementById('navToggle');
   const nav    = document.getElementById('navMenu');

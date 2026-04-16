@@ -58,7 +58,7 @@ require_once __DIR__ . '/includes/admin_header.php';
 
 <div class="confirm-page">
   <div class="confirm-card">
-    <div class="confirm-card__icon" aria-hidden="true" role="img">⚠️</div>
+    <div class="confirm-card__icon" aria-hidden="true" role="img"><i data-lucide="alert-triangle"></i></div>
     <h1 class="confirm-card__title">Delete Inquiry?</h1>
     <p class="confirm-card__desc">
       You are about to permanently delete the inquiry from<br>
@@ -72,7 +72,7 @@ require_once __DIR__ . '/includes/admin_header.php';
       <a href="/admin/inquiries.php" class="btn-form btn-form--secondary" style="text-decoration:none;">Cancel</a>
       <form method="POST" action="/admin/delete_inquiry.php?id=<?= $id ?>" style="display:inline;">
         <button type="submit" name="confirm_delete" value="1" class="btn-form btn-form--danger" id="confirmDeleteBtn">
-          🗑️ Yes, Delete It
+          <i data-lucide="trash-2"></i> Yes, Delete It
         </button>
       </form>
     </div>
