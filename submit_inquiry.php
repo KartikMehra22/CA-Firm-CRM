@@ -72,6 +72,16 @@ if ($message === '' || mb_strlen($message) < 10)
     $errors[] = 'Message must be at least 10 characters.';
 
 if (!empty($errors)) {
+    // Save what the user typed so the form can be repopulated after the redirect
+    // Without this, everything they filled in gets wiped on redirect
+    $_SESSION['form_data'] = [
+        'full_name' => $full_name,
+        'email'     => $email,
+        'mobile'    => $mobile,
+        'city'      => $city,
+        'service'   => $service,
+        'message'   => $message,
+    ];
     redirect_with_flash('/#contact', 'error', implode(' ', $errors));
 }
 

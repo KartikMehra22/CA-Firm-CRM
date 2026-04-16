@@ -1,8 +1,10 @@
 <?php
-/**
- * index.php — Public landing page
- * Sharma & Associates | CA Firm CRM
- */
+// Read back form data saved by submit_inquiry.php on validation failure
+// Lets us repopulate the form so the user doesn't lose what they typed
+if (session_status() === PHP_SESSION_NONE) session_start();
+$fd = $_SESSION['form_data'] ?? [];
+unset($_SESSION['form_data']);
+
 $page_title = 'Sharma &amp; Associates | Chartered Accountants &amp; Tax Consultants';
 require_once 'includes/header.php';
 ?>
@@ -197,7 +199,7 @@ require_once 'includes/header.php';
             maxlength="255"
             required
             autocomplete="name"
-            value="<?= htmlspecialchars($_GET['pf_name'] ?? '') ?>"
+            value="<?= htmlspecialchars($fd['full_name'] ?? '') ?>"
           >
           <span class="form-feedback">Please enter your full name.</span>
         </div>
@@ -213,7 +215,7 @@ require_once 'includes/header.php';
             maxlength="255"
             required
             autocomplete="email"
-            value="<?= htmlspecialchars($_GET['pf_email'] ?? '') ?>"
+            value="<?= htmlspecialchars($fd['email'] ?? '') ?>"
           >
           <span class="form-feedback">Please enter a valid email address.</span>
         </div>
@@ -230,6 +232,7 @@ require_once 'includes/header.php';
             maxlength="10"
             required
             autocomplete="tel"
+            value="<?= htmlspecialchars($fd['mobile'] ?? '') ?>"
           >
           <span class="form-feedback">Enter a valid 10-digit Indian mobile number.</span>
         </div>
@@ -245,21 +248,23 @@ require_once 'includes/header.php';
             maxlength="100"
             required
             autocomplete="address-level2"
+            value="<?= htmlspecialchars($fd['city'] ?? '') ?>"
           >
           <span class="form-feedback">Please enter your city.</span>
         </div>
 
         <div class="form-group form-group--full">
           <label class="form-label" for="service">Service Required <span style="color:#ef5350">*</span></label>
+          <?php $sel = $fd['service'] ?? ''; ?>
           <select id="service" name="service" class="form-control" required>
-            <option value="" disabled selected>— Select a service —</option>
-            <option value="Income Tax Filing">Income Tax Filing</option>
-            <option value="GST Registration & Returns">GST Registration &amp; Returns</option>
-            <option value="Company Registration">Company Registration</option>
-            <option value="Audit & Assurance">Audit &amp; Assurance</option>
-            <option value="Business Advisory">Business Advisory</option>
-            <option value="Tax Planning & Advisory">Tax Planning &amp; Advisory</option>
-            <option value="Other">Other</option>
+            <option value="" disabled <?= $sel === '' ? 'selected' : '' ?>>— Select a service —</option>
+            <option value="Income Tax Filing"       <?= $sel === 'Income Tax Filing'        ? 'selected' : '' ?>>Income Tax Filing</option>
+            <option value="GST Registration & Returns" <?= $sel === 'GST Registration & Returns' ? 'selected' : '' ?>>GST Registration &amp; Returns</option>
+            <option value="Company Registration"    <?= $sel === 'Company Registration'     ? 'selected' : '' ?>>Company Registration</option>
+            <option value="Audit & Assurance"        <?= $sel === 'Audit & Assurance'        ? 'selected' : '' ?>>Audit &amp; Assurance</option>
+            <option value="Business Advisory"        <?= $sel === 'Business Advisory'        ? 'selected' : '' ?>>Business Advisory</option>
+            <option value="Tax Planning & Advisory"  <?= $sel === 'Tax Planning & Advisory'  ? 'selected' : '' ?>>Tax Planning &amp; Advisory</option>
+            <option value="Other"                    <?= $sel === 'Other'                    ? 'selected' : '' ?>>Other</option>
           </select>
           <span class="form-feedback">Please select a service.</span>
         </div>
@@ -274,8 +279,8 @@ require_once 'includes/header.php';
             rows="4"
             maxlength="2000"
             required
-          ></textarea>
-          <span class="form-feedback">Please enter your message.</span>
+          ><?= htmlspecialchars($fd['message'] ?? '') ?></textarea>
+          <span class="form-feedback">Message must be at least 10 characters.</span>
         </div>
 
       </div>

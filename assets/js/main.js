@@ -72,10 +72,16 @@ document.addEventListener('DOMContentLoaded', function () {
         emailField.classList.add('is-invalid');
         valid = false;
       }
-      // Mobile check (10-digit)
+      // Mobile check (10-digit Indian number)
       const mobileField = inquiryForm.querySelector('[name="mobile"]');
       if (mobileField && mobileField.value && !/^[6-9]\d{9}$/.test(mobileField.value)) {
         mobileField.classList.add('is-invalid');
+        valid = false;
+      }
+      // Message minimum 10 characters
+      const msgField = inquiryForm.querySelector('[name="message"]');
+      if (msgField && msgField.value.trim().length < 10) {
+        msgField.classList.add('is-invalid');
         valid = false;
       }
       if (!valid) e.preventDefault();
