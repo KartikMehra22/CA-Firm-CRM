@@ -35,6 +35,14 @@
   --transition: .25s ease;
 }
 
+/* Shared Icon Helper */
+.lucide {
+  width: 1.1em;
+  height: 1.1em;
+  vertical-align: -0.15em;
+  stroke-width: 2px;
+}
+
 /* ── Reset ───────────────────────────────────────────────── */
 *,
 *::before,

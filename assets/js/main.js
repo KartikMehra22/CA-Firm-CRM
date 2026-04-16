@@ -118,4 +118,9 @@ document.addEventListener('DOMContentLoaded', function () {
     setInterval(updateDate, 60000);
   }
 
+  /* ── Lucide Icon Initialization ──────────────────────────── */
+  if (typeof lucide !== 'undefined') {
+    lucide.createIcons();
+  }
+
 });
