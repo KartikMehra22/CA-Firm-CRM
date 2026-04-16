@@ -181,6 +181,9 @@ require_once 'includes/header.php';
     <p class="section-sub">Fill in the form below and our team will reach out within 24 hours.</p>
 
     <form class="inquiry-form" id="inquiryForm" method="POST" action="/submit_inquiry.php" novalidate>
+
+      <!-- Honeypot: hidden from real users via CSS/aria, bots fill it automatically -->
+      <input type="text" name="website" value="" style="position:absolute;left:-9999px;opacity:0;height:0;width:0;" tabindex="-1" autocomplete="off" aria-hidden="true">
       <div class="form-grid">
 
         <div class="form-group">
@@ -285,5 +288,141 @@ require_once 'includes/header.php';
     </form>
   </div>
 </section>
+
+<!-- ══ TESTIMONIALS ════════════════════════════ -->
+<section class="services section-pad" style="background:var(--white);" id="testimonials">
+  <div class="container text-center">
+    <span class="section-label">Client Words</span>
+    <h2 class="section-title">What Our Clients Say</h2>
+    <p class="section-sub">Over 1,500 clients trust us for their financial needs every year.</p>
+  </div>
+  <div class="container">
+    <div class="services__grid" style="margin-top:2.5rem;">
+
+      <article class="service-card" style="text-align:left;">
+        <div style="display:flex;gap:.25rem;margin-bottom:1rem;color:#f59e0b;font-size:1rem;">★★★★★</div>
+        <p style="font-size:.9rem;color:var(--text-muted);line-height:1.7;margin-bottom:1.25rem;">
+          &ldquo;Sharma &amp; Associates handled our GST registration and monthly returns seamlessly. 
+          Extremely professional and always available for queries.&rdquo;
+        </p>
+        <div style="display:flex;align-items:center;gap:.75rem;">
+          <div style="width:40px;height:40px;border-radius:50%;background:var(--navy);color:var(--gold);display:grid;place-items:center;font-weight:700;flex-shrink:0;">RK</div>
+          <div>
+            <p style="font-weight:600;font-size:.9rem;">Rajesh Kumar</p>
+            <p style="font-size:.78rem;color:var(--text-muted);">Director, Kumar Exports Pvt. Ltd.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="service-card" style="text-align:left;">
+        <div style="display:flex;gap:.25rem;margin-bottom:1rem;color:#f59e0b;font-size:1rem;">★★★★★</div>
+        <p style="font-size:.9rem;color:var(--text-muted);line-height:1.7;margin-bottom:1.25rem;">
+          &ldquo;Filed my ITR for the last 5 years with them. They always find deductions I wasn\'t even 
+          aware of. Saved me lakhs in taxes legally.&rdquo;
+        </p>
+        <div style="display:flex;align-items:center;gap:.75rem;">
+          <div style="width:40px;height:40px;border-radius:50%;background:var(--navy);color:var(--gold);display:grid;place-items:center;font-weight:700;flex-shrink:0;">PS</div>
+          <div>
+            <p style="font-weight:600;font-size:.9rem;">Priya Sharma</p>
+            <p style="font-size:.78rem;color:var(--text-muted);">Software Engineer &amp; HNI Taxpayer</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="service-card" style="text-align:left;">
+        <div style="display:flex;gap:.25rem;margin-bottom:1rem;color:#f59e0b;font-size:1rem;">★★★★★</div>
+        <p style="font-size:.9rem;color:var(--text-muted);line-height:1.7;margin-bottom:1.25rem;">
+          &ldquo;Got our startup incorporated in just 4 days. The team handled all MCA filings and 
+          compliance from day one. Highly recommended for new businesses.&rdquo;
+        </p>
+        <div style="display:flex;align-items:center;gap:.75rem;">
+          <div style="width:40px;height:40px;border-radius:50%;background:var(--navy);color:var(--gold);display:grid;place-items:center;font-weight:700;flex-shrink:0;">AM</div>
+          <div>
+            <p style="font-weight:600;font-size:.9rem;">Arjun Mehta</p>
+            <p style="font-size:.78rem;color:var(--text-muted);">Co-Founder, FinVista Technologies</p>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- WhatsApp floating button — every Indian CA firm has one -->
+<a href="https://wa.me/919876543210?text=Hi%2C%20I%20would%20like%20to%20enquire%20about%20your%20CA%20services."
+   target="_blank"
+   rel="noopener noreferrer"
+   id="whatsappBtn"
+   aria-label="Chat with us on WhatsApp"
+   style="
+     position:fixed;
+     bottom:1.5rem;
+     right:1.5rem;
+     width:56px;
+     height:56px;
+     background:#25d366;
+     color:#fff;
+     border-radius:50%;
+     display:grid;
+     place-items:center;
+     font-size:1.6rem;
+     box-shadow:0 4px 20px rgba(37,211,102,.5);
+     z-index:999;
+     transition:transform .2s ease, box-shadow .2s ease;
+     text-decoration:none;
+   "
+   onmouseenter="this.style.transform='scale(1.12)';this.style.boxShadow='0 6px 28px rgba(37,211,102,.65)';"
+   onmouseleave="this.style.transform='scale(1)';this.style.boxShadow='0 4px 20px rgba(37,211,102,.5)';"
+>
+  💬
+</a>
+
+<!-- Animated counter script for hero numbers -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var counters = document.querySelectorAll('.hero__stat-num');
+  if (!counters.length) return;
+
+  var targets = [20, 1500, 200]; // matching the hero stats order
+  var suffixes = ['+', '+', 'Cr+'];
+  var prefixes = ['', '', '₹'];
+  var started = false;
+
+  function animateCounter(el, target, prefix, suffix, duration) {
+    var start = 0;
+    var step  = target / (duration / 16);
+    var timer = setInterval(function () {
+      start += step;
+      if (start >= target) {
+        el.textContent = prefix + target.toLocaleString('en-IN') + suffix;
+        clearInterval(timer);
+      } else {
+        el.textContent = prefix + Math.floor(start).toLocaleString('en-IN') + suffix;
+      }
+    }, 16);
+  }
+
+  // Only start when the hero section is in view
+  var hero = document.querySelector('.hero');
+  if (!hero || !window.IntersectionObserver) {
+    // Fallback: just set the text directly
+    counters.forEach(function(el, i) {
+      el.textContent = prefixes[i] + targets[i].toLocaleString('en-IN') + suffixes[i];
+    });
+    return;
+  }
+
+  var observer = new IntersectionObserver(function (entries) {
+    if (entries[0].isIntersecting && !started) {
+      started = true;
+      counters.forEach(function (el, i) {
+        animateCounter(el, targets[i], prefixes[i], suffixes[i], 1800);
+      });
+    }
+  }, { threshold: 0.3 });
+
+  observer.observe(hero);
+});
+</script>
 
 <?php require_once 'includes/footer.php'; ?>

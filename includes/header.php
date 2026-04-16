@@ -43,10 +43,11 @@ $current_page = basename($_SERVER['PHP_SELF']);
 
     <!-- Nav links — toggle class 'open' via JS for mobile -->
     <ul class="navbar__nav" id="navMenu" role="list">
-      <li><a href="/#home"     class="navbar__link">Home</a></li>
-      <li><a href="/#services" class="navbar__link">Services</a></li>
-      <li><a href="/#about"    class="navbar__link">About Us</a></li>
-      <li><a href="/#contact"  class="navbar__link navbar__cta">Get Consultation</a></li>
+      <li><a href="/#home"          class="navbar__link">Home</a></li>
+      <li><a href="/#services"      class="navbar__link">Services</a></li>
+      <li><a href="/#about"         class="navbar__link">About Us</a></li>
+      <li><a href="/#testimonials"  class="navbar__link">Testimonials</a></li>
+      <li><a href="/#contact"       class="navbar__link navbar__cta">Get Consultation</a></li>
     </ul>
 
     <!-- Hamburger button for mobile, toggled via main.js -->

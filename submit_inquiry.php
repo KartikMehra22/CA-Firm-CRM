@@ -23,6 +23,16 @@ function sanitise(string $value): string
     return trim(htmlspecialchars($value, ENT_QUOTES, 'UTF-8'));
 }
 
+// Honeypot anti-spam: real users never fill this hidden field, bots do
+// Silently redirect as if successful so bots don't know they were caught
+if (!empty($_POST['website'])) {
+    redirect_with_flash(
+        '/#contact',
+        'success',
+        '✓ Thank you! We received your inquiry and will get back to you within 24 hours.'
+    );
+}
+
 // Grab and clean the form data
 $full_name = sanitise($_POST['full_name'] ?? '');
 $email     = trim($_POST['email'] ?? '');

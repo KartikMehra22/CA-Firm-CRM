@@ -80,6 +80,14 @@ $initials    = strtoupper(substr($admin_name, 0, 1));
           </a>
         </li>
       </ul>
+      <p class="sidebar__section-label" style="margin-top:1rem;">Account</p>
+      <ul>
+        <li class="sidebar__item">
+          <a href="/admin/change_password.php" class="sidebar__link">
+            <span class="sidebar__icon">🔒</span> Change Password
+          </a>
+        </li>
+      </ul>
       <p class="sidebar__section-label" style="margin-top:1rem;">Site</p>
       <ul>
         <li class="sidebar__item">

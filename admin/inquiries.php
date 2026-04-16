@@ -123,7 +123,15 @@ require_once __DIR__ . '/includes/admin_header.php';
 <div class="card">
   <div class="card__header">
     <h2 class="card__title">Inquiry List</h2>
-    <span style="font-size:.8rem;color:var(--muted);">Showing <?= count($rows) ?> of <?= $total_rows ?></span>
+    <div style="display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;">
+      <span style="font-size:.8rem;color:var(--muted);">Showing <?= count($rows) ?> of <?= $total_rows ?></span>
+      <a href="/admin/export_csv.php<?= $search || $status ? '?' . http_build_query(array_filter(['search'=>$search,'status'=>$status])) : '' ?>"
+         class="filter-btn filter-btn--primary"
+         style="text-decoration:none;display:flex;align-items:center;gap:.4rem;"
+         title="Download current results as CSV">
+        ⬇️ Export CSV
+      </a>
+    </div>
   </div>
 
   <?php if (empty($rows)): ?>
@@ -161,9 +169,17 @@ require_once __DIR__ . '/includes/admin_header.php';
             <?= htmlspecialchars($row['service']) ?>
           </td>
           <td>
-            <span class="badge badge--<?= htmlspecialchars($row['status']) ?>">
-              <?= ucfirst(htmlspecialchars($row['status'])) ?>
-            </span>
+            <!-- Inline status change — no need to open the edit page just to update status -->
+            <form method="POST" action="/admin/update_status.php" style="margin:0;">
+              <input type="hidden" name="id" value="<?= (int)$row['id'] ?>">
+              <input type="hidden" name="back" value="<?= htmlspecialchars($_SERVER['REQUEST_URI']) ?>">
+              <select name="status" class="filter-input" style="padding:.3rem .6rem;font-size:.78rem;cursor:pointer;"
+                      onchange="this.form.submit()" title="Change status">
+                <option value="new"       <?= $row['status']==='new'       ? 'selected':'' ?>>🆕 New</option>
+                <option value="contacted" <?= $row['status']==='contacted' ? 'selected':'' ?>>📞 Contacted</option>
+                <option value="closed"    <?= $row['status']==='closed'    ? 'selected':'' ?>>✅ Closed</option>
+              </select>
+            </form>
           </td>
           <td style="white-space:nowrap;font-size:.82rem;color:var(--muted)">
             <?= date('d M Y', strtotime($row['created_at'])) ?><br>
