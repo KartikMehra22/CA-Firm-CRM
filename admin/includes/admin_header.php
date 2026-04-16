@@ -62,24 +62,7 @@ $initials    = strtoupper(substr($admin_name, 0, 1));
           </a>
         </li>
       </ul>
-      <p class="sidebar__section-label" style="margin-top:1rem;">Quick Filters</p>
-      <ul>
-        <li class="sidebar__item">
-          <a href="/admin/inquiries.php?status=new" class="sidebar__link">
-            <span class="sidebar__icon">🆕</span> New Inquiries
-          </a>
-        </li>
-        <li class="sidebar__item">
-          <a href="/admin/inquiries.php?status=contacted" class="sidebar__link">
-            <span class="sidebar__icon">📞</span> Contacted
-          </a>
-        </li>
-        <li class="sidebar__item">
-          <a href="/admin/inquiries.php?status=closed" class="sidebar__link">
-            <span class="sidebar__icon">✅</span> Closed
-          </a>
-        </li>
-      </ul>
+
       <p class="sidebar__section-label" style="margin-top:1rem;">Account</p>
       <ul>
         <li class="sidebar__item">
