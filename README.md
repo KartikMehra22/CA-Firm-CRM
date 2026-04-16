@@ -1,6 +1,6 @@
 # CA Firm Landing Page + Inquiry Management System
 
-A PHP web app built for a CA / Tax consultancy firm. Has a public-facing landing page where clients can submit inquiries, and an admin panel to manage those inquiries.
+A PHP web app built for a CA / Tax consultancy firm. Has a public-facing landing page where clients can submit inquiries, and a full admin panel to manage those inquiries.
 
 Built as part of a PHP Developer Internship assignment.
 
@@ -10,27 +10,35 @@ Built as part of a PHP Developer Internship assignment.
 
 - **PHP 8.x** — Core PHP, no framework
 - **MySQL** — Database
-- **PDO** — For all DB queries (prepared statements throughout)
+- **PDO** — All DB queries use prepared statements
 - **Vanilla CSS + JS** — No libraries, everything written from scratch
 
 ---
 
-## What It Does
+## Features
 
-### Public Side
-- Landing page with info about the firm, services offered, and a contact/inquiry form
-- Form collects: Full Name, Email, Mobile, City, Service, Message
-- Server-side validation on all fields
-- Shows a success/error flash message after submission
+### Public Site
+- Professional landing page — Hero, Services, Why Us, Testimonials, Contact Form
+- Animated number counters in hero section (Intersection Observer)
+- WhatsApp floating CTA button
+- Inquiry form with client-side + server-side validation
+- Form fields repopulate on validation error — user never loses what they typed
+- Honeypot anti-spam on inquiry form (silent fake-success for bots)
+- Flash success/error messages after form submit
 
 ### Admin Panel (`/admin/login.php`)
 - Secure login with bcrypt-hashed passwords
-- Session-based auth — all admin routes are protected
-- Dashboard showing total, new, contacted, and closed inquiry counts
+- Session regeneration on login (prevents session fixation)
+- All admin routes protected by auth guard
+- Dashboard with real-time counts: total, new, contacted, closed
 - Inquiry list with search (name / email / mobile) and status filter
+- **Inline status change** — change status directly from the table, no need to open edit page
+- **Export to CSV** — downloads current filtered results as a CSV file (Excel-compatible UTF-8)
+- **Change Password** — secure change with old password verification
+- Full inquiry edit (all fields + status)
+- Delete with confirmation step
 - Pagination (15 per page)
-- Edit any inquiry's details and update its status
-- Delete with a confirmation step so nothing gets deleted by accident
+- Mobile-responsive sidebar with overlay
 
 ---
 
@@ -40,26 +48,29 @@ Built as part of a PHP Developer Internship assignment.
 CA-Firm-CRM/
 ├── ca_firm.sql              ← run this first to set up the DB
 ├── config/
-│   └── db.php               ← PDO connection, just require() wherever needed
+│   └── db.php               ← PDO connection (require it wherever needed)
 ├── includes/
 │   ├── header.php           ← public site nav + flash messages
 │   ├── footer.php
-│   └── auth_guard.php       ← drop this at the top of any admin page
+│   └── auth_guard.php       ← session check for admin pages
 ├── assets/
 │   ├── css/
-│   │   ├── style.css        ← public site styles
+│   │   ├── style.css        ← public site styles (Navy + Gold)
 │   │   └── admin.css        ← admin panel styles
 │   └── js/
-│       └── main.js          ← mobile nav toggle, flash dismiss, form validation
+│       └── main.js          ← mobile nav, flash dismiss, form validation, counters
 ├── index.php                ← public landing page
-├── submit_inquiry.php       ← handles the form POST
+├── submit_inquiry.php        ← form POST handler
 └── admin/
     ├── login.php
     ├── logout.php
     ├── dashboard.php
-    ├── inquiries.php
+    ├── inquiries.php         ← list with search, filter, inline status, CSV export
     ├── edit_inquiry.php
     ├── delete_inquiry.php
+    ├── update_status.php     ← inline status change handler
+    ├── export_csv.php        ← downloads inquiries as CSV
+    ├── change_password.php   ← admin password change
     └── includes/
         ├── admin_header.php
         └── admin_footer.php
@@ -75,6 +86,8 @@ CA-Firm-CRM/
 mysql -u root -p < ca_firm.sql
 ```
 
+Or open phpMyAdmin → Import → select `ca_firm.sql`.
+
 **2. Update DB credentials in `config/db.php`**
 
 ```php
@@ -84,12 +97,11 @@ $pass = 'your_password';
 
 **3. Start a local server**
 
-If you have PHP installed:
 ```bash
 php -S localhost:8000
 ```
 
-Or drop the folder into XAMPP's `htdocs` / MAMP's `htdocs` and access it from there.
+Or use XAMPP / MAMP — place the folder in `htdocs` and access it from there.
 
 **4. Open in browser**
 
@@ -109,6 +121,7 @@ Password: Admin@123
 
 ## Notes
 
-- If you're on macOS and get a socket error with MySQL, change `localhost` to `127.0.0.1` in `config/db.php` — that forces a TCP connection instead of a Unix socket.
-- The bcrypt hash in `ca_firm.sql` was generated with PHP's `password_hash('Admin@123', PASSWORD_BCRYPT)` so it works out of the box with `password_verify()`.
-- Flash messages are stored in the session and cleared after being displayed once.
+- On macOS, use `127.0.0.1` instead of `localhost` in `config/db.php` to avoid the MySQL Unix socket error.
+- The bcrypt hash in `ca_firm.sql` was generated with `password_hash('Admin@123', PASSWORD_BCRYPT)` — works out of the box with `password_verify()`.
+- CSV export respects the current search and status filter, and includes a UTF-8 BOM so Excel opens it correctly without encoding issues.
+- The honeypot field is invisible to real users but bots fill it automatically. If filled, the request is silently fake-succeeded so bots don't retry.
