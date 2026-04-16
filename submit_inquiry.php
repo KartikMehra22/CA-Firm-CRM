@@ -29,7 +29,7 @@ if (!empty($_POST['website'])) {
     redirect_with_flash(
         '/#contact',
         'success',
-        '✓ Thank you! We received your inquiry and will get back to you within 24 hours.'
+        'Thank you! We received your inquiry and will get back to you within 24 hours.'
     );
 }
 
@@ -105,7 +105,7 @@ try {
     redirect_with_flash(
         '/#contact',
         'success',
-        '✓ Thank you, ' . htmlspecialchars($full_name) . '! We received your inquiry and will get back to you within 24 hours.'
+        'Thank you, ' . htmlspecialchars($full_name) . '! We received your inquiry and will get back to you within 24 hours.'
     );
 
 } catch (PDOException $e) {

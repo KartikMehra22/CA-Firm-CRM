@@ -4,14 +4,9 @@
 
 document.addEventListener('DOMContentLoaded', function () {
 
-  // Initialize Lucide icons
-  if (typeof lucide !== 'undefined') {
-    lucide.createIcons();
-  }
-
   /* ── Mobile Nav Toggle (Public) ──────────────────────────── */
   const toggle = document.getElementById('navToggle');
-  const nav    = document.getElementById('navMenu');
+  const nav = document.getElementById('navMenu');
   if (toggle && nav) {
     toggle.addEventListener('click', function () {
       this.classList.toggle('open');
@@ -27,8 +22,8 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /* ── Admin Sidebar Toggle (Mobile) ──────────────────────── */
-  const sidebarToggle  = document.getElementById('sidebarToggle');
-  const sidebar        = document.getElementById('adminSidebar');
+  const sidebarToggle = document.getElementById('sidebarToggle');
+  const sidebar = document.getElementById('adminSidebar');
   const sidebarOverlay = document.getElementById('sidebarOverlay');
   if (sidebarToggle && sidebar) {
     sidebarToggle.addEventListener('click', function () {
@@ -47,8 +42,8 @@ document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('.flash, .admin-flash').forEach(function (el) {
     setTimeout(function () {
       el.style.transition = 'opacity .4s ease, transform .4s ease';
-      el.style.opacity    = '0';
-      el.style.transform  = 'translateY(-8px)';
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(-8px)';
       setTimeout(function () { el.remove(); }, 450);
     }, 4500);
   });

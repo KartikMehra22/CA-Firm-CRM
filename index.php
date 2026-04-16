@@ -26,7 +26,7 @@ require_once 'includes/header.php';
         compliant and financially secure.
       </p>
       <div class="hero__actions">
-        <a href="#contact" class="btn btn--gold">📋 Get Free Consultation</a>
+        <a href="#contact" class="btn btn--gold"><i data-lucide="clipboard-list"></i> Get Free Consultation</a>
         <a href="#services" class="btn btn--outline">Explore Services</a>
       </div>
     </div>
@@ -50,13 +50,13 @@ require_once 'includes/header.php';
       <p class="hero__trust">Trusted by businesses across India</p>
       <div style="display:flex; gap:.5rem; flex-wrap:wrap;">
         <span
-          style="background:rgba(255,255,255,.12);color:rgba(255,255,255,.7);font-size:.75rem;padding:.3rem .7rem;border-radius:20px;">✓
+          style="background:rgba(255,255,255,.12);color:rgba(255,255,255,.7);font-size:.75rem;padding:.3rem .7rem;border-radius:20px;"><i data-lucide="check-circle-2"></i>
           GST Compliant</span>
         <span
-          style="background:rgba(255,255,255,.12);color:rgba(255,255,255,.7);font-size:.75rem;padding:.3rem .7rem;border-radius:20px;">✓
+          style="background:rgba(255,255,255,.12);color:rgba(255,255,255,.7);font-size:.75rem;padding:.3rem .7rem;border-radius:20px;"><i data-lucide="check-circle-2"></i>
           ICAI Registered</span>
         <span
-          style="background:rgba(255,255,255,.12);color:rgba(255,255,255,.7);font-size:.75rem;padding:.3rem .7rem;border-radius:20px;">✓
+          style="background:rgba(255,255,255,.12);color:rgba(255,255,255,.7);font-size:.75rem;padding:.3rem .7rem;border-radius:20px;"><i data-lucide="check-circle-2"></i>
           ISO Certified</span>
       </div>
     </div>
@@ -75,51 +75,51 @@ require_once 'includes/header.php';
     <div class="services__grid">
 
       <article class="service-card">
-        <div class="service-card__icon" style="background:linear-gradient(135deg,#e3f2fd,#bbdefb)">📊</div>
+        <div class="service-card__icon" style="background:linear-gradient(135deg,#e3f2fd,#bbdefb)"><i data-lucide="bar-chart-3"></i></div>
         <h3 class="service-card__title">Income Tax Filing</h3>
         <p class="service-card__desc">Accurate and timely ITR preparation for individuals, firms, and corporates. We
           ensure maximum deductions and full compliance.</p>
-        <a href="#contact" class="service-card__link">Get Started →</a>
+        <a href="#contact" class="service-card__link">Get Started <i data-lucide="arrow-right"></i></a>
       </article>
 
       <article class="service-card">
-        <div class="service-card__icon" style="background:linear-gradient(135deg,#fff8e1,#ffe082)">🧾</div>
+        <div class="service-card__icon" style="background:linear-gradient(135deg,#fff8e1,#ffe082)"><i data-lucide="receipt"></i></div>
         <h3 class="service-card__title">GST Registration &amp; Returns</h3>
         <p class="service-card__desc">End-to-end GST solutions — registration, monthly/quarterly returns,
           reconciliation, and GST audit support.</p>
-        <a href="#contact" class="service-card__link">Get Started →</a>
+        <a href="#contact" class="service-card__link">Get Started <i data-lucide="arrow-right"></i></a>
       </article>
 
       <article class="service-card">
-        <div class="service-card__icon" style="background:linear-gradient(135deg,#e8f5e9,#a5d6a7)">🏢</div>
+        <div class="service-card__icon" style="background:linear-gradient(135deg,#e8f5e9,#a5d6a7)"><i data-lucide="building-2"></i></div>
         <h3 class="service-card__title">Company Registration</h3>
         <p class="service-card__desc">Pvt Ltd, LLP, OPC — we handle end-to-end incorporation, MCA filings, and ROC
           compliance for your business.</p>
-        <a href="#contact" class="service-card__link">Get Started →</a>
+        <a href="#contact" class="service-card__link">Get Started <i data-lucide="arrow-right"></i></a>
       </article>
 
       <article class="service-card">
-        <div class="service-card__icon" style="background:linear-gradient(135deg,#fce4ec,#f48fb1)">🔍</div>
+        <div class="service-card__icon" style="background:linear-gradient(135deg,#fce4ec,#f48fb1)"><i data-lucide="search"></i></div>
         <h3 class="service-card__title">Audit &amp; Assurance</h3>
         <p class="service-card__desc">Statutory, tax, internal and concurrent audits conducted with precision to
           maintain transparency and build stakeholder confidence.</p>
-        <a href="#contact" class="service-card__link">Get Started →</a>
+        <a href="#contact" class="service-card__link">Get Started <i data-lucide="arrow-right"></i></a>
       </article>
 
       <article class="service-card">
-        <div class="service-card__icon" style="background:linear-gradient(135deg,#f3e5f5,#ce93d8)">📈</div>
+        <div class="service-card__icon" style="background:linear-gradient(135deg,#f3e5f5,#ce93d8)"><i data-lucide="trending-up"></i></div>
         <h3 class="service-card__title">Business Advisory</h3>
         <p class="service-card__desc">Strategic financial consulting — business valuation, investment planning,
           cash-flow management, and growth strategy.</p>
-        <a href="#contact" class="service-card__link">Get Started →</a>
+        <a href="#contact" class="service-card__link">Get Started <i data-lucide="arrow-right"></i></a>
       </article>
 
       <article class="service-card">
-        <div class="service-card__icon" style="background:linear-gradient(135deg,#e0f7fa,#80deea)">⚖️</div>
+        <div class="service-card__icon" style="background:linear-gradient(135deg,#e0f7fa,#80deea)"><i data-lucide="scale"></i></div>
         <h3 class="service-card__title">Tax Planning &amp; Advisory</h3>
         <p class="service-card__desc">Proactive, legal tax optimisation strategies for HNIs and businesses to reduce tax
           burden while staying fully compliant.</p>
-        <a href="#contact" class="service-card__link">Get Started →</a>
+        <a href="#contact" class="service-card__link">Get Started <i data-lucide="arrow-right"></i></a>
       </article>
 
     </div>
@@ -136,7 +136,7 @@ require_once 'includes/header.php';
         <h2 class="section-title" style="margin-bottom:2rem;">20 Years of Excellence<br>in Financial Advisory</h2>
         <div class="why__list">
           <div class="why__item">
-            <div class="why__dot" aria-hidden="true">✓</div>
+            <div class="why__dot" aria-hidden="true"><i data-lucide="check-circle"></i></div>
             <div>
               <p class="why__item-title">Certified &amp; Experienced Team</p>
               <p class="why__item-desc">All our CAs are ICAI registered with 10+ years of hands-on client experience
@@ -144,7 +144,7 @@ require_once 'includes/header.php';
             </div>
           </div>
           <div class="why__item">
-            <div class="why__dot" aria-hidden="true">🔒</div>
+            <div class="why__dot" aria-hidden="true"><i data-lucide="lock"></i></div>
             <div>
               <p class="why__item-title">Confidentiality Assured</p>
               <p class="why__item-desc">Your financial data is always handled with strict confidentiality protocols and
@@ -152,7 +152,7 @@ require_once 'includes/header.php';
             </div>
           </div>
           <div class="why__item">
-            <div class="why__dot" aria-hidden="true">⚡</div>
+            <div class="why__dot" aria-hidden="true"><i data-lucide="zap"></i></div>
             <div>
               <p class="why__item-title">Fast &amp; Deadline-Driven</p>
               <p class="why__item-desc">We track every deadline and deliver on time — no penalties, no last-minute
@@ -160,7 +160,7 @@ require_once 'includes/header.php';
             </div>
           </div>
           <div class="why__item">
-            <div class="why__dot" aria-hidden="true">💬</div>
+            <div class="why__dot" aria-hidden="true"><i data-lucide="message-square"></i></div>
             <div>
               <p class="why__item-title">Dedicated Relationship Manager</p>
               <p class="why__item-desc">Every client gets a dedicated CA as a single point of contact for all their
@@ -172,7 +172,7 @@ require_once 'includes/header.php';
 
       <div class="why__image">
         <div class="why__image-placeholder" style="position:relative;">
-          <div style="font-size:4rem;margin-bottom:1rem;">🏛️</div>
+          <div style="font-size:4rem;margin-bottom:1rem;"><i data-lucide="landmark"></i></div>
           <p style="font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:.75rem;">Trusted by 1,500+
             Clients</p>
           <p style="color:rgba(255,255,255,.6);font-size:.875rem;line-height:1.6;">From individual taxpayers to Fortune
@@ -271,7 +271,7 @@ require_once 'includes/header.php';
 
       <div class="form-submit">
         <button type="submit" class="btn btn--navy" id="submitBtn">
-          Submit Inquiry ➜
+          Submit Inquiry <i data-lucide="arrow-right"></i>
         </button>
       </div>
     </form>
@@ -289,7 +289,9 @@ require_once 'includes/header.php';
     <div class="services__grid" style="margin-top:2.5rem;">
 
       <article class="service-card" style="text-align:left;">
-        <div style="display:flex;gap:.25rem;margin-bottom:1rem;color:#f59e0b;font-size:1rem;">★★★★★</div>
+        <div class="stars-row" style="display:flex;gap:.25rem;margin-bottom:1rem;color:#f59e0b;font-size:1rem;">
+          <i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i>
+        </div>
         <p style="font-size:.9rem;color:var(--text-muted);line-height:1.7;margin-bottom:1.25rem;">
           &ldquo;Sharma &amp; Associates handled our GST registration and monthly returns seamlessly.
           Extremely professional and always available for queries.&rdquo;
@@ -306,7 +308,9 @@ require_once 'includes/header.php';
       </article>
 
       <article class="service-card" style="text-align:left;">
-        <div style="display:flex;gap:.25rem;margin-bottom:1rem;color:#f59e0b;font-size:1rem;">★★★★★</div>
+        <div class="stars-row" style="display:flex;gap:.25rem;margin-bottom:1rem;color:#f59e0b;font-size:1rem;">
+          <i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i>
+        </div>
         <p style="font-size:.9rem;color:var(--text-muted);line-height:1.7;margin-bottom:1.25rem;">
           &ldquo;Filed my ITR for the last 5 years with them. They always find deductions I wasn\'t even
           aware of. Saved me lakhs in taxes legally.&rdquo;
@@ -323,7 +327,9 @@ require_once 'includes/header.php';
       </article>
 
       <article class="service-card" style="text-align:left;">
-        <div style="display:flex;gap:.25rem;margin-bottom:1rem;color:#f59e0b;font-size:1rem;">★★★★★</div>
+        <div class="stars-row" style="display:flex;gap:.25rem;margin-bottom:1rem;color:#f59e0b;font-size:1rem;">
+          <i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i>
+        </div>
         <p style="font-size:.9rem;color:var(--text-muted);line-height:1.7;margin-bottom:1.25rem;">
           &ldquo;Got our startup incorporated in just 4 days. The team handled all MCA filings and
           compliance from day one. Highly recommended for new businesses.&rdquo;

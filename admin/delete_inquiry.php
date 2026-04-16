@@ -1,54 +1,54 @@
 <?php
 require_once __DIR__ . '/../includes/auth_guard.php';
 
-$id = (int)($_GET['id'] ?? 0);
+$id = (int) ($_GET['id'] ?? 0);
 
 if ($id <= 0) {
-    header('Location: /admin/inquiries.php');
-    exit;
+  header('Location: /admin/inquiries.php');
+  exit;
 }
 
 try {
-    $pdo = require __DIR__ . '/../config/db.php';
+  $pdo = require __DIR__ . '/../config/db.php';
 
-    // Fetch just enough info to show in the confirmation message
-    $stmt = $pdo->prepare(
-        'SELECT id, full_name, email, service, created_at FROM inquiries WHERE id = :id LIMIT 1'
-    );
-    $stmt->execute([':id' => $id]);
-    $inquiry = $stmt->fetch();
+  // Fetch just enough info to show in the confirmation message
+  $stmt = $pdo->prepare(
+    'SELECT id, full_name, email, service, created_at FROM inquiries WHERE id = :id LIMIT 1'
+  );
+  $stmt->execute([':id' => $id]);
+  $inquiry = $stmt->fetch();
 
-    if (!$inquiry) {
-        $_SESSION['flash_type']    = 'error';
-        $_SESSION['flash_message'] = 'Inquiry not found.';
-        header('Location: /admin/inquiries.php');
-        exit;
-    }
-
-} catch (PDOException $e) {
-    error_log('[CA-Firm CRM] Delete fetch error: ' . $e->getMessage());
+  if (!$inquiry) {
+    $_SESSION['flash_type'] = 'error';
+    $_SESSION['flash_message'] = 'Inquiry not found.';
     header('Location: /admin/inquiries.php');
     exit;
+  }
+
+} catch (PDOException $e) {
+  error_log('[CA-Firm CRM] Delete fetch error: ' . $e->getMessage());
+  header('Location: /admin/inquiries.php');
+  exit;
 }
 
 // Only delete when the form is actually submitted — not just by visiting the URL
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_delete'])) {
-    try {
-        $del = $pdo->prepare('DELETE FROM inquiries WHERE id = :id');
-        $del->execute([':id' => $id]);
+  try {
+    $del = $pdo->prepare('DELETE FROM inquiries WHERE id = :id');
+    $del->execute([':id' => $id]);
 
-        $_SESSION['flash_type']    = 'success';
-        $_SESSION['flash_message'] = 'Inquiry #' . $id . ' (' . $inquiry['full_name'] . ') deleted.';
-        header('Location: /admin/inquiries.php');
-        exit;
+    $_SESSION['flash_type'] = 'success';
+    $_SESSION['flash_message'] = 'Inquiry #' . $id . ' (' . $inquiry['full_name'] . ') deleted.';
+    header('Location: /admin/inquiries.php');
+    exit;
 
-    } catch (PDOException $e) {
-        error_log('[CA-Firm CRM] Delete error: ' . $e->getMessage());
-        $_SESSION['flash_type']    = 'error';
-        $_SESSION['flash_message'] = 'Could not delete. Please try again.';
-        header('Location: /admin/inquiries.php');
-        exit;
-    }
+  } catch (PDOException $e) {
+    error_log('[CA-Firm CRM] Delete error: ' . $e->getMessage());
+    $_SESSION['flash_type'] = 'error';
+    $_SESSION['flash_message'] = 'Could not delete. Please try again.';
+    header('Location: /admin/inquiries.php');
+    exit;
+  }
 }
 
 $page_title = 'Delete Inquiry';

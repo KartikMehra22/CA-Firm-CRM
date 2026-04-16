@@ -20,6 +20,7 @@ Built as part of a PHP Developer Internship assignment.
 ### Public Site
 - Professional landing page — Hero, Services, Why Us, Testimonials, Contact Form
 - Animated number counters in hero section (Intersection Observer)
+- WhatsApp floating CTA button
 - Inquiry form with client-side + server-side validation
 - Form fields repopulate on validation error — user never loses what they typed
 - Honeypot anti-spam on inquiry form (silent fake-success for bots)
@@ -45,31 +46,31 @@ Built as part of a PHP Developer Internship assignment.
 
 ```
 CA-Firm-CRM/
-├── ca_firm.sql              ← run this first to set up the DB
+├── ca_firm.sql              (run this first to set up the DB)
 ├── config/
-│   └── db.php               ← PDO connection (require it wherever needed)
+│   └── db.php               (PDO connection)
 ├── includes/
-│   ├── header.php           ← public site nav + flash messages
+│   ├── header.php           (public site nav + flash messages)
 │   ├── footer.php
-│   └── auth_guard.php       ← session check for admin pages
+│   └── auth_guard.php       (session check for admin pages)
 ├── assets/
 │   ├── css/
-│   │   ├── style.css        ← public site styles (Navy + Gold)
-│   │   └── admin.css        ← admin panel styles
+│   │   ├── style.css        (public site styles)
+│   │   └── admin.css        (admin panel styles)
 │   └── js/
-│       └── main.js          ← mobile nav, flash dismiss, form validation, counters
-├── index.php                ← public landing page
-├── submit_inquiry.php        ← form POST handler
+│       └── main.js          (logic & initialization)
+├── index.php                (public landing page)
+├── submit_inquiry.php       (form POST handler)
 └── admin/
     ├── login.php
     ├── logout.php
     ├── dashboard.php
-    ├── inquiries.php         ← list with search, filter, inline status, CSV export
+    ├── inquiries.php         (list with search & filter)
     ├── edit_inquiry.php
     ├── delete_inquiry.php
-    ├── update_status.php     ← inline status change handler
-    ├── export_csv.php        ← downloads inquiries as CSV
-    ├── change_password.php   ← admin password change
+    ├── update_status.php     (status change handler)
+    ├── export_csv.php        (downloads CSV)
+    ├── change_password.php   (admin password change)
     └── includes/
         ├── admin_header.php
         └── admin_footer.php
@@ -85,7 +86,7 @@ CA-Firm-CRM/
 mysql -u root -p < ca_firm.sql
 ```
 
-Or open phpMyAdmin → Import → select `ca_firm.sql`.
+Or open phpMyAdmin (Import) select `ca_firm.sql`.
 
 **2. Update DB credentials in `config/db.php`**
 

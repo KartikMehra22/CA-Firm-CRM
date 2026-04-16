@@ -91,8 +91,8 @@ $initials = strtoupper(substr($admin_name, 0, 1));
           <p class="sidebar__admin-role"><?= htmlspecialchars($admin_email) ?></p>
         </div>
         <a href="/admin/logout.php" class="sidebar__logout">
-          🚪 Sign Out
-        </a>
+        <i data-lucide="log-out"></i> Sign Out
+      </a>
       </div>
 
     </aside>
@@ -122,8 +122,8 @@ $initials = strtoupper(substr($admin_name, 0, 1));
       <main class="page-content" id="mainContent">
 
         <?php if ($admin_flash_message): ?>
-          <div class="admin-flash admin-flash--<?= htmlspecialchars($admin_flash_type) ?>" role="alert">
-            <?= $admin_flash_type === 'success' ? '✓' : '✕' ?>
-            <?= htmlspecialchars($admin_flash_message) ?>
-          </div>
-        <?php endif; ?>
+      <div class="admin-flash admin-flash--<?= htmlspecialchars($admin_flash_type) ?>" role="alert">
+        <i data-lucide="<?= $admin_flash_type === 'success' ? 'check-circle' : 'x-circle' ?>"></i>
+        <?= htmlspecialchars($admin_flash_message) ?>
+      </div>
+      <?php endif; ?>
