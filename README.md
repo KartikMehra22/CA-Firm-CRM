@@ -20,7 +20,6 @@ Built as part of a PHP Developer Internship assignment.
 ### Public Site
 - Professional landing page — Hero, Services, Why Us, Testimonials, Contact Form
 - Animated number counters in hero section (Intersection Observer)
-- WhatsApp floating CTA button
 - Inquiry form with client-side + server-side validation
 - Form fields repopulate on validation error — user never loses what they typed
 - Honeypot anti-spam on inquiry form (silent fake-success for bots)

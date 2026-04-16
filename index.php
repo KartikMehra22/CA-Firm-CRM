@@ -353,34 +353,6 @@ require_once 'includes/header.php';
   </div>
 </section>
 
-<!-- WhatsApp floating button — every Indian CA firm has one -->
-<a href="https://wa.me/919876543210?text=Hi%2C%20I%20would%20like%20to%20enquire%20about%20your%20CA%20services."
-   target="_blank"
-   rel="noopener noreferrer"
-   id="whatsappBtn"
-   aria-label="Chat with us on WhatsApp"
-   style="
-     position:fixed;
-     bottom:1.5rem;
-     right:1.5rem;
-     width:56px;
-     height:56px;
-     background:#25d366;
-     color:#fff;
-     border-radius:50%;
-     display:grid;
-     place-items:center;
-     font-size:1.6rem;
-     box-shadow:0 4px 20px rgba(37,211,102,.5);
-     z-index:999;
-     transition:transform .2s ease, box-shadow .2s ease;
-     text-decoration:none;
-   "
-   onmouseenter="this.style.transform='scale(1.12)';this.style.boxShadow='0 6px 28px rgba(37,211,102,.65)';"
-   onmouseleave="this.style.transform='scale(1)';this.style.boxShadow='0 4px 20px rgba(37,211,102,.5)';"
->
-  💬
-</a>
 
 <!-- Animated counter script for hero numbers -->
 <script>
